@@ -1,0 +1,11 @@
+apiVersion: acme.com/v1
+kind: Workload
+metadata:
+name: workload
+image: /{{ .Values.image }}:sha-{{ .Values.revision }}
+port: 5678
+route: /eladb-hello(/|$)(.*)
+rewrite: /$2
+replicas: 2
+env:
+ECHO_TEXT: "hello from eladb-hello"
